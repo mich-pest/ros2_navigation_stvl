@@ -49,4 +49,4 @@ stvl_layer:
     horizontal_fov_angle: 1.048
     decay_acceleration: 15.0
     model_type: 0
-    ```
+```

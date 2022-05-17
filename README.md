@@ -3,15 +3,16 @@ Site: https://navigation.ros.org/tutorials/docs/navigation2_with_stvl.html
 file: /opt/ros/galactic/share/nav2_bringup/params/nav2_params.yaml
 
 at 
-
+```bash
 global_costmap:
   global_costmap:
     ros__parameters:
       use_sim_time: True
       plugins: ["static_layer", "stvl_layer"] # CHANGE THIS LINE
+```
       
 and add this part in the local costmap:
-
+```bash
 stvl_layer:
   plugin: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer" # For Foxy and later
   enabled: true
@@ -48,3 +49,4 @@ stvl_layer:
     horizontal_fov_angle: 1.048
     decay_acceleration: 15.0
     model_type: 0
+    ```

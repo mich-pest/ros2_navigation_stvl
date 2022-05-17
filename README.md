@@ -1,8 +1,16 @@
-Site: https://navigation.ros.org/tutorials/docs/navigation2_with_stvl.html
+Site
+-----------
+https://navigation.ros.org/tutorials/docs/navigation2_with_stvl.html
 
-file: /opt/ros/galactic/share/nav2_bringup/params/nav2_params.yaml
 
-at 
+File
+-----------
+/opt/ros/galactic/share/nav2_bringup/params/nav2_params.yaml
+
+
+To Add
+-----------
+At:
 ```bash
 global_costmap:
   global_costmap:
@@ -11,7 +19,7 @@ global_costmap:
       plugins: ["static_layer", "stvl_layer"] # CHANGE THIS LINE
 ```
       
-and add this part in the local costmap:
+Add this part in the local costmap:
 ```bash
 stvl_layer:
   plugin: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer" # For Foxy and later
@@ -50,3 +58,5 @@ stvl_layer:
     decay_acceleration: 15.0
     model_type: 0
 ```
+
+Order to follow on RViz: add pointcloud, set pose estimate, set goal, change map view.

@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find linorobot2_description)/urdf/sensors/laser.urdf.xacro" />
-    <xacro:include filename="$(find linorobot2_description)/urdf/sensors/laser_360.urdf.xacro" />
+  <!-- !! 1) ADDED -->
+  <xacro:include filename="$(find linorobot2_description)/urdf/sensors/laser_3d.urdf.xacro" />
 
   <xacro:macro name="generic_laser" params="*origin">
     <xacro:laser
@@ -34,8 +35,8 @@
   </xacro:macro>
   
   <!-- !! 1) ADDED -->
-  <xacro:macro name="generic_laser_360" params="*origin">
-    <xacro:laser_360
+  <xacro:macro name="generic_laser_3d" params="*origin">
+    <xacro:laser_3d
       update_rate="10"
       ray_count="360"
       min_angle="-3.1416"
@@ -46,6 +47,6 @@
       topic_name="agv/pointcloud"
     >
       <xacro:insert_block name="origin" />
-    </xacro:laser_360>
+    </xacro:laser_3d>
   </xacro:macro>
 </robot>

@@ -62,9 +62,9 @@
   <xacro:imu/>
 	
   <!-- !! 2) ADDED -->
-  <xacro:generic_laser_360>
-    <xacro:insert_block name="laser_360_pose" />
-  </xacro:generic_laser_360>
+  <xacro:generic_laser_3d>
+    <xacro:insert_block name="laser_3d_pose" />
+  </xacro:generic_laser_3d>
 
   <xacro:generic_laser>
     <xacro:insert_block name="laser_pose" />

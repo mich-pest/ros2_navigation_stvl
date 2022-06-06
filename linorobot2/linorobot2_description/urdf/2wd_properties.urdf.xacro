@@ -20,7 +20,7 @@
   </xacro:property>
 
   <!-- !! 3) ADDED -->
-  <xacro:property name="laser_360_pose">
+  <xacro:property name="laser_3d_pose">
     <origin xyz="0.12 0 0.50" rpy="0 0 0"/>
   </xacro:property>
 

@@ -1,5 +1,5 @@
-Re-written laser 360 xacro.\\
-Added in generic_laser.xacro the laser_360-xacro, since in there, there are every possible laser.\\
-Added in 2wd.xacro the new macro of the laser_360, which was added in the generic_laser.xacro.\\
-Added in 2wd_properties.xacro the new laser_360 block and changed its position.\\
-Changed the nav2 param file, according to the vlp16_config.yaml which is present in the example folder of stvl repo.
+- Re-written laser 360 xacro.
+- Added in generic_laser.xacro the laser_360-xacro, since in there, there are every possible laser.
+- Added in 2wd.xacro the new macro of the laser_360, which was added in the generic_laser.xacro.
+- Added in 2wd_properties.xacro the new laser_360 block and changed its position.
+- Changed the nav2 param file, according to the vlp16_config.yaml which is present in the example folder of stvl repo.

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>linorobot2_bringup</name>
+  <version>0.0.0</version>
+  <description>Linorobot2 Bringup Files</description>
+  <maintainer email="jimenojmm@gmail.com">Juan Miguel Jimeno</maintainer>
+  <license>Apache 2.0</license>
+  <url type="website">linorobot.org</url>
+  <url type="repository">https://github.com/linorobot/linorobot2</url>
+  <url type="bugtracker">https://github.com/linorobot/linorobot2/issues</url>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <exec_depend>robot_localization</exec_depend>
+  <exec_depend>joy_linux</exec_depend>
+  <exec_depend>teleop_twist_joy</exec_depend>
+  <exec_depend>teleop_twist_keyboard</exec_depend>
+  <exec_depend>micro_ros_agent</exec_depend>
+  <exec_depend>depthimage_to_laserscan</exec_depend>
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

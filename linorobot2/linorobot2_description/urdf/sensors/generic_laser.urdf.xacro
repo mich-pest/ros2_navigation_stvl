@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find linorobot2_description)/urdf/sensors/laser.urdf.xacro" />
+    <xacro:include filename="$(find linorobot2_description)/urdf/sensors/laser_360.urdf.xacro" />
+
+  <xacro:macro name="generic_laser" params="*origin">
+    <xacro:laser
+      update_rate="10"
+      ray_count="360"
+      min_angle="-3.1416"
+      max_angle="3.1416"
+      min_range="0.08"
+      max_range="12.0"
+      frame_id="laser"
+      topic_name="scan"
+    >
+      <xacro:insert_block name="origin" />
+    </xacro:laser>
+  </xacro:macro>
+
+  <xacro:macro name="generic_base_laser" params="*origin">
+    <xacro:laser
+      update_rate="10"
+      ray_count="360"
+      min_angle="-3.1416"
+      max_angle="3.1416"
+      min_range="0.21"
+      max_range="5.5"
+      frame_id="base_laser"
+      topic_name="base/scan"
+    >
+      <xacro:insert_block name="origin" />
+    </xacro:laser>
+  </xacro:macro>
+
+  <xacro:macro name="generic_laser_360" params="*origin">
+    <xacro:laser_360
+      update_rate="10"
+      ray_count="360"
+      min_angle="-3.1416"
+      max_angle="3.1416"
+      min_range="0.21"
+      max_range="5.5"
+      frame_id="laser_360"
+      topic_name="agv/pointcloud"
+    >
+      <xacro:insert_block name="origin" />
+    </xacro:laser_360>
+  </xacro:macro>
+</robot>

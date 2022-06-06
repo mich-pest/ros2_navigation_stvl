@@ -1,0 +1,82 @@
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+  <xacro:macro name="laser" params="*origin update_rate ray_count min_angle max_angle min_range max_range frame_id topic_name">
+    <link name="${frame_id}">
+      <visual>
+        <origin xyz="0 0 -0.025" rpy="0 0 0"/>
+        <geometry>
+          <cylinder radius="0.0375" length="0.05"/>
+        </geometry>
+        <material name="green">
+            <color rgba="0.003 0.639 0.223 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 -0.025" rpy="0 0 0"/>
+        <geometry>
+          <cylinder radius="0.0375" length="0.05"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.1"/>
+        <inertia ixx="${(2/5) * 0.1 * (0.0375 * 0.0375)}" ixy="0" ixz="0"
+                 iyy="${(2/5) * 0.1 * (0.0375 * 0.0375)}" iyz="0"
+                 izz="${(2/5) * 0.1 * (0.0375 * 0.0375)}" />
+      </inertial>
+    </link>
+
+    <gazebo reference="${frame_id}">  
+      <visual>  
+        <material>
+          <ambient>0.003 0.639 0.223 1.0</ambient>  
+          <diffuse>0.003 0.639 0.223 1.0</diffuse>  
+          <specular>0.003 0.639 0.223 1.0</specular>  
+          <emissive>0.0 0.0 0.0 0.0</emissive>  
+        </material>
+      </visual> 
+    </gazebo>
+
+    <joint name="${frame_id}_to_base_link" type="fixed">
+      <parent link="base_link"/>
+      <child link="${frame_id}"/>
+      <xacro:insert_block name="origin" />
+    </joint>
+
+    <gazebo reference="${frame_id}">
+      <sensor type="ray" name="${frame_id}_head_hokuyo_sensor">
+        <always_on>true</always_on>
+        <update_rate>${update_rate}</update_rate>
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>false</visualize>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>${ray_count}</samples>	
+              <resolution>1</resolution>
+              <min_angle>${min_angle}</min_angle>
+              <max_angle>${max_angle}</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>${min_range}</min>
+            <max>${max_range}</max>
+            <resolution>0.01</resolution>
+          </range>
+        </ray>
+        <plugin name="${frame_id}_gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_ray_sensor.so">
+          <ros>
+            <remapping>~/out:=${topic_name}</remapping>                                                                                                                           
+          </ros>
+          <output_type>sensor_msgs/LaserScan</output_type>
+          <alwaysOn>true</alwaysOn>
+          <updateRate>${update_rate}</updateRate>
+          <topicName>${topic_name}</topicName>
+          <frame_name>${frame_id}</frame_name>
+          <output_type>sensor_msgs/LaserScan</output_type>
+        </plugin>
+      </sensor>
+    </gazebo>
+  </xacro:macro>
+</robot>

@@ -32,7 +32,8 @@
       <xacro:insert_block name="origin" />
     </xacro:laser>
   </xacro:macro>
-
+  
+  <!-- !! ADDED -->
   <xacro:macro name="generic_laser_360" params="*origin">
     <xacro:laser_360
       update_rate="10"

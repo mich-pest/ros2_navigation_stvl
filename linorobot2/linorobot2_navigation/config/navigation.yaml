@@ -272,7 +272,7 @@ global_costmap:
 #          clearing: True
 #          marking: True
 #          data_type: "PointCloud2"
-      #TODO
+      #!! ADDED ACCORDING TO VLP16 EXAMPLE IN STVL REPO
       stvl_layer:
           plugin: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer" # For Foxy and later
           enabled: true

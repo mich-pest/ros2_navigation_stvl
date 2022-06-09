@@ -8,5 +8,5 @@ LASER 3D:
 
 CHANGE MAP:
 - change .world file in linorobot2_description/description.launch (having the new .world in worlds folder)
-- put the files stored in models folder in https://github.com/chaolmu/gazebo_models_worlds_collection inside the model folder of Gazebo at /home/<user>/.gazebo
+- put the files stored in models folder in https://github.com/chaolmu/gazebo_models_worlds_collection inside the model folder of Gazebo at /home/\<user\>/.gazebo
 

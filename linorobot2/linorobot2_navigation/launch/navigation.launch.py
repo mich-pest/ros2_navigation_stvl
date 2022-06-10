@@ -22,6 +22,7 @@ from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node
 
 MAP_NAME='office_earthquake' #change to the name of your own map here
+SENSOR = 'rgbd' #3d or rgbd
 
 def generate_launch_description():
     depth_sensor = os.getenv('LINOROBOT2_DEPTH_SENSOR', '')
@@ -39,7 +40,7 @@ def generate_launch_description():
     )
 
     nav2_config_path = PathJoinSubstitution(
-        [FindPackageShare('linorobot2_navigation'), 'config', 'navigation.yaml']
+        [FindPackageShare('linorobot2_navigation'), 'config', f'navigation_{SENSOR}.yaml']
     )
 
     return LaunchDescription([

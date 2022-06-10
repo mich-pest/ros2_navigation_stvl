@@ -57,31 +57,45 @@
     <gazebo reference="camera_link">
       <sensor name="camera" type="depth">
         <always_on>true</always_on>
-        <update_rate>30.0</update_rate>
+        <update_rate>0.5</update_rate>
         <camera name="camera">
           <horizontal_fov>1.50098</horizontal_fov>
-          <image>
-            <width>640</width>
-            <height>480</height>
-            <format>R8G8B8</format>
-          </image>
+          <distortion>
+              <k1>0.1</k1>
+              <k2>0.2</k2>
+              <k3>0.3</k3>
+              <p1>0.4</p1>
+              <p2>0.5</p2>
+              <center>0.5 0.5</center>
+          </distortion>
         </camera>
         <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
           <ros>
-            <remapping>/camera/camera_info:=/camera/color/camera_info</remapping>
-            <remapping>/camera/image_raw:=/camera/color/image_raw</remapping>
-            <remapping>/camera/points:=/camera/depth/color/points</remapping>
-            <remapping>/camera/depth/image_raw:=/camera/depth/image_rect_raw</remapping>
+              <namespace>custom_ns</namespace>
+              <argument>camera/camera_info:=camera/color/camera_info</argument>
+              <argument>camera/image_raw:=camera/color/image_raw</argument>
+              <argument>camera/points:=camera/depth/color/points</argument>
+              <argument>camera/depth/image_raw:=camera/depth/image_rect_raw</argument>
+            <qos>
+              <topic name="/camera/depth/color/points">
+                <publisher>
+                    <reliability>reliable</reliability>
+                </publisher>
+              </topic>
+            </qos> 
+            <qos>
+              <topic name="/camera/color/image_raw">
+                <publisher>
+                    <reliability>reliable</reliability>
+                </publisher>
+              </topic>
+            </qos> 
           </ros>
-          <min_depth>0.015</min_depth>
-          <max_depth>3.0</max_depth>
           <hack_baseline>0.07</hack_baseline>
           <frame_name>camera_depth_link</frame_name>
-          <distortion_k1>0.00000001</distortion_k1>
-          <distortion_k2>0.00000001</distortion_k2>
-          <distortion_k3>0.00000001</distortion_k3>
-          <distortion_t1>0.00000001</distortion_t1>
-          <distortion_t2>0.00000001</distortion_t2>
+          <camera_name>camera</camera_name>
+          <min_depth>0.015</min_depth>
+          <max_depth>3.0</max_depth>
         </plugin>
       </sensor>
 

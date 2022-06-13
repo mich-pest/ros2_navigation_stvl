@@ -60,8 +60,8 @@
           <vertical>
             <samples>8</samples>
             <resolution>1</resolution>
-            <min_angle>-0.2</min_angle>
-            <max_angle>0.2</max_angle>
+            <min_angle>-0.3</min_angle>
+            <max_angle>0.3</max_angle>
           </vertical>
 
         </scan>

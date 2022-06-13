@@ -245,7 +245,7 @@ global_costmap:
           clearing: True
           marking: True
           data_type: "LaserScan"
-      #!! ADDED ACCORDING TO VLP16 EXAMPLE IN STVL REPO
+      #!! ADDED ACCORDING TO INDOOR ENVIRONMENT AND RGBD AS IN EXAMPLE FOLDER IN STVL REPO
       stvl_layer:
         plugin: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer"
         enabled:                  true
@@ -270,7 +270,9 @@ global_costmap:
           clearing: false
           obstacle_range: 3.0          # meters
           min_obstacle_height: 0.05     # default 0, meters
-          max_obstacle_height: 3.0     # default 3, meters
+          # max for office should be 1.2
+          # max for playgroun should be 10
+          max_obstacle_height: 10.0     # default 3, meters
           expected_update_rate: 0.0    # default 0, if not updating at this rate at least, remove from buffer
           observation_persistence: 0.0 # default 0, use all measurements taken during now-value, 0=latest
           inf_is_valid: false          # default false, for laser scans
@@ -285,7 +287,7 @@ global_costmap:
           max_z: 7.0                  # default 0, meters
           min_z: 0.1                  # default 10, meters
           vertical_fov_angle: 0.8745  # default 0.7, radians
-          horizontal_fov_angle: 1.048 # default 1.04, radians
+          horizontal_fov_angle: 1.50098 # default 1.04, radians
           decay_acceleration: 5.0     # default 0, 1/s^2. If laser scanner MUST be 0
           model_type: 0                # default 0, model type for frustum. 0=depth camera, 1=3d lidar like VLP16 or similar
       static_layer:

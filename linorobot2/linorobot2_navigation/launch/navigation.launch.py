@@ -22,9 +22,9 @@ from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node
 
 # Glboal variable to specify which map to be launched in rviz
-MAP_NAME='playground' 
+MAP_NAME='office_earthquake' 
 # Global variable to specify in a easier way which sensor to use for stvl layer
-SENSOR = '3d' #3d or rgbd
+SENSOR = 'rgbd' #3d or rgbd
 
 def generate_launch_description():
     depth_sensor = os.getenv('LINOROBOT2_DEPTH_SENSOR', '')

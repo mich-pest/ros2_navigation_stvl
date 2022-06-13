@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find linorobot2_description)/urdf/sensors/laser.urdf.xacro" />
-  <!-- !! 1) ADDED -->
+  <!-- !! 1) Added reference to laser_3d xacro file -->
   <xacro:include filename="$(find linorobot2_description)/urdf/sensors/laser_3d.urdf.xacro" />
 
   <xacro:macro name="generic_laser" params="*origin">
@@ -34,7 +34,7 @@
     </xacro:laser>
   </xacro:macro>
   
-  <!-- !! 1) ADDED -->
+  <!-- !! 1) Added laser_3d block, passing its parameters -->
   <xacro:macro name="generic_laser_3d" params="*origin">
     <xacro:laser_3d
       update_rate="10"

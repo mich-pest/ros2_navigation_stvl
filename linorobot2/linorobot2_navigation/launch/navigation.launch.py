@@ -22,6 +22,7 @@ from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node
 
 MAP_NAME='office_earthquake' #change to the name of your own map here
+# Global variable to specify in a easier way which sensor to use for stvl layer
 SENSOR = 'rgbd' #3d or rgbd
 
 def generate_launch_description():
@@ -39,6 +40,7 @@ def generate_launch_description():
         [FindPackageShare('linorobot2_navigation'), 'maps', f'{MAP_NAME}.yaml']
     )
 
+    # Passing parameter file.yaml according to which sensor has been selected for the stvl layer
     nav2_config_path = PathJoinSubstitution(
         [FindPackageShare('linorobot2_navigation'), 'config', f'navigation_{SENSOR}.yaml']
     )

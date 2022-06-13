@@ -66,7 +66,7 @@
 
   <xacro:imu/>
 	
-  <!-- !! 2) ADDED -->
+  <!-- !! 2) Added laser_3d block to the robot -->
   <xacro:generic_laser_3d>
     <xacro:insert_block name="laser_3d_pose" />
   </xacro:generic_laser_3d>

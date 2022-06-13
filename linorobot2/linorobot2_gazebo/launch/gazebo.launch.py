@@ -32,6 +32,7 @@ def generate_launch_description():
         [FindPackageShare("linorobot2_base"), "config", "ekf.yaml"]
     )
 
+    # Specify .world file to be launched
     world_path = PathJoinSubstitution(
         #[FindPackageShare("linorobot2_gazebo"), "worlds", "playground.world"]
         #[FindPackageShare("linorobot2_gazebo"), "worlds", "gas_station.world"]

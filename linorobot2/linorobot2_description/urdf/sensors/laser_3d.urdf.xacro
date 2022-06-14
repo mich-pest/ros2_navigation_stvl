@@ -58,7 +58,7 @@
             <max_angle>${max_angle}</max_angle>
           </horizontal>
           <vertical>
-            <samples>8</samples>
+            <samples>20</samples>
             <resolution>1</resolution>
             <min_angle>-0.3</min_angle>
             <max_angle>0.3</max_angle>

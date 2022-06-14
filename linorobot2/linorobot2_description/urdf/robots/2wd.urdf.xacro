@@ -10,6 +10,7 @@
   <xacro:include filename="$(find linorobot2_description)/urdf/sensors/generic_laser.urdf.xacro" />
   <xacro:include filename="$(find linorobot2_description)/urdf/sensors/depth_sensor.urdf.xacro" />
   <xacro:include filename="$(find linorobot2_description)/urdf/controllers/diff_drive.urdf.xacro" />
+  
 
   <xacro:base 
     length="${base_length}" 
@@ -75,8 +76,28 @@
     <xacro:insert_block name="laser_pose" />
   </xacro:generic_laser>
   
-  <xacro:depth_sensor>
-    <xacro:insert_block name="depth_sensor_pose" />
+  <xacro:depth_sensor
+  	camera_link="camera_link1" 
+  	camera_to_base_link="camera_to_base_link1" 
+  	camera_depth_link="camera_depth_link1" 
+  	camera_depth_joint="camera_depth_joint1" 
+  	camera_name="camera_name1" 
+  	custom_namespace="custom_namespace1" 
+  	camera_controller="camera_controller1"
+  >
+    <xacro:insert_block name="depth_sensor_pose1"/>
+  </xacro:depth_sensor>
+  
+  <xacro:depth_sensor
+  	camera_link="camera_link2" 
+  	camera_to_base_link="camera_to_base_link2" 
+  	camera_depth_link="camera_depth_link2" 
+  	camera_depth_joint="camera_depth_joint2" 
+  	camera_name="camera_name2" 
+  	custom_namespace="custom_namespace2" 
+  	camera_controller="camera_controller2"
+  >
+    <xacro:insert_block name="depth_sensor_pose2"/>
   </xacro:depth_sensor>
 
   <xacro:diff_drive_controller

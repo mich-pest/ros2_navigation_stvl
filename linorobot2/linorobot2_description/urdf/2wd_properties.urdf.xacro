@@ -22,9 +22,13 @@
   <!-- !! 3) Added laser_3d pose -->
   <xacro:property name="laser_3d_pose">
     <origin xyz="0.12 0 0.50" rpy="0 0 0"/>
-  </xacro:property>
+  </xacro:property> 
 
-  <xacro:property name="depth_sensor_pose">
+  <xacro:property name="depth_sensor_pose1">
     <origin xyz="0.14 0.0 0.045" rpy="0 0 0"/>
+  </xacro:property>
+  
+  <xacro:property name="depth_sensor_pose2">
+    <origin xyz="-0.14 0.0 0.058" rpy="0 0 3.14"/>
   </xacro:property>
 </robot>

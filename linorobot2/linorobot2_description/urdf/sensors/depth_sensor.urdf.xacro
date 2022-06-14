@@ -1,7 +1,7 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:property name="M_PI" value="3.1415926535897931" />
-  <xacro:macro name="depth_sensor" params="*origin">
-    <link name="camera_link">
+  <xacro:macro name="depth_sensor" params="*origin camera_link camera_to_base_link camera_depth_link camera_depth_joint camera_name custom_namespace camera_controller">
+    <link name="${camera_link}">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
@@ -29,7 +29,7 @@
       </inertial>
     </link>
     
-    <gazebo reference="camera_link">  
+    <gazebo reference="${camera_link}">  
       <visual>  
         <material>
           <ambient>0.416 0.051 0.047 1.0</ambient>  
@@ -40,25 +40,25 @@
       </visual> 
     </gazebo>rgb(213,28,40)
 
-    <joint name="camera_to_base_link" type="fixed">
+    <joint name="${camera_to_base_link}" type="fixed">
       <parent link="base_link"/>
-      <child link="camera_link"/>
+      <child link="${camera_link}"/>
       <xacro:insert_block name="origin" />
     </joint>
 
-    <link name="camera_depth_link"/>
-    <joint name="camera_depth_joint" type="fixed">
+    <link name="${camera_depth_link}"/>
+    <joint name="${camera_depth_joint}" type="fixed">
       <origin xyz="0 0 0" rpy="-1.57 0 -1.57"/>
-      <parent link="camera_link"/>
-      <child link="camera_depth_link"/>
+      <parent link="${camera_link}"/>
+      <child link="${camera_depth_link}"/>
     </joint>
 
     <!-- https://github.com/ros-simulation/gazebo_ros_pkgs/wiki/ROS-2-Migration:-Camera#gazebo_ros_camera -->
-    <gazebo reference="camera_link">
-      <sensor name="camera" type="depth">
+    <gazebo reference="${camera_link}">
+      <sensor name="${camera_name}" type="depth">
         <always_on>true</always_on>
         <update_rate>1.0</update_rate>
-        <camera name="camera">
+        <camera name="${camera_name}">
           <horizontal_fov>1.50098</horizontal_fov>
           <distortion>
               <k1>0.1</k1>
@@ -69,13 +69,13 @@
               <center>0.5 0.5</center>
           </distortion>
         </camera>
-        <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <plugin name="${camera_controller}" filename="libgazebo_ros_camera.so">
           <ros>
-              <namespace>custom_ns</namespace>
-              <argument>camera/camera_info:=camera/color/camera_info</argument>
-              <argument>camera/image_raw:=camera/color/image_raw</argument>
-              <argument>camera/points:=camera/depth/color/points</argument>
-              <argument>camera/depth/image_raw:=camera/depth/image_rect_raw</argument>
+              <namespace>${custom_namespace}</namespace>
+              <argument>${camera_name}/camera_info:=camera/color/camera_info</argument>
+              <argument>${camera_name}/image_raw:=camera/color/image_raw</argument>
+              <argument>${camera_name}/points:=camera/depth/color/points</argument>
+              <argument>${camera_name}/depth/image_raw:=camera/depth/image_rect_raw</argument>
             <qos>
               <topic name="/camera/depth/color/points">
                 <publisher>
@@ -93,8 +93,8 @@
           </ros>
           <update_rate>1.0</update_rate>
           <hack_baseline>0.07</hack_baseline>
-          <frame_name>camera_depth_link</frame_name>
-          <camera_name>camera</camera_name>
+          <frame_name>${camera_depth_link}</frame_name>
+          <camera_name>${camera_name}</camera_name>
           <min_depth>0.015</min_depth>
           <max_depth>3.0</max_depth>
         </plugin>

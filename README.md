@@ -1,3 +1,6 @@
+Presentation
+https://docs.google.com/presentation/d/16H6UWZdG9vLEqmC7Yr39WvfOtzAtyYVt/edit?usp=sharing&ouid=114062065228952062731&rtpof=true&sd=true
+
 Site
 -----------
 https://navigation.ros.org/tutorials/docs/navigation2_with_stvl.html

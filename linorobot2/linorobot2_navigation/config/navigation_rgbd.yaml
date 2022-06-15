@@ -200,10 +200,10 @@ local_costmap:
         transform_tolerance:      0.2   # seconds
         mapping_mode:             false # default off, saves map not for navigation
         map_save_duration:        60.0  # default 60s, how often to autosave
-        observation_sources:      rgbd1_mark rgbd1_clear
+        observation_sources:      rgbd1_mark rgbd1_clear rgbd2_mark rgbd2_clear
         rgbd1_mark:
           data_type: PointCloud2
-          topic: /custom_ns/camera/depth/color/points #/agv/pointcloud
+          topic: /custom_namespace1/camera/depth/color/points #/agv/pointcloud
           marking: true
           clearing: false
           obstacle_range: 3.0          # meters
@@ -219,7 +219,34 @@ local_costmap:
           clear_after_reading: false    # default false, clear the buffer after the layer gets readings from it
         rgbd1_clear:
           data_type: PointCloud2
-          topic: /custom_ns/camera/depth/color/points #/agv/pointcloud
+          topic: /custom_namespace1/camera/depth/color/points #/agv/pointcloud
+          marking: false
+          clearing: true
+          max_z: 7.0                  # default 0, meters
+          min_z: 0.1                  # default 10, meters
+          vertical_fov_angle: 0.8745  # default 0.7, radians
+          horizontal_fov_angle: 1.50098 # default 1.04, radians
+          decay_acceleration: 5.0     # default 0, 1/s^2. If laser scanner MUST be 0
+          model_type: 0                # default 0, model type for frustum. 0=depth camera, 1=3d lidar like VLP16 or similar
+        rgbd2_mark:
+          data_type: PointCloud2
+          topic: /custom_namespace2/camera/depth/color/points #/agv/pointcloud
+          marking: true
+          clearing: false
+          obstacle_range: 3.0          # meters
+          min_obstacle_height: 0.05     # default 0, meters
+          # max for office should be 1.2
+          # max for playgroun should be 10
+          max_obstacle_height: 10.0     # default 3, meters
+          expected_update_rate: 0.0    # default 0, if not updating at this rate at least, remove from buffer
+          observation_persistence: 0.0 # default 0, use all measurements taken during now-value, 0=latest
+          inf_is_valid: false          # default false, for laser scans
+          filter: "passthrough"        # default passthrough, apply "voxel", "passthrough", or no filter to sensor data, recommend on 
+          voxel_min_points: 0          # default 0, minimum points per voxel for voxel filter
+          clear_after_reading: false    # default false, clear the buffer after the layer gets readings from it
+        rgbd2_clear:
+          data_type: PointCloud2
+          topic: /custom_namespace2/camera/depth/color/points #/agv/pointcloud
           marking: false
           clearing: true
           max_z: 7.0                  # default 0, meters

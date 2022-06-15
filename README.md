@@ -231,7 +231,7 @@ The Navigation 2 package allows to move a mobile robot safely from the initial p
 Nav2 uses Behavior Trees (BT) to call several modular servers to complete an action. An action can consist of calculating a path, checking effort, recovery or any other navigation-related action.
 These are independent nodes that communicate with the Behavior Tree (BT) on a ROS action server. The following diagram represents the structure of Nav2.
 
-![Nav2 Structure](/path_to_image/image.jpeg)
+![Nav2 Structure](https://user-images.githubusercontent.com/82339529/173867968-ed07e595-3628-4562-b677-856c13903c89.png)
 
 The possible independent servers and plugins available are:
 - **Map Server**, to load and store maps
@@ -246,8 +246,6 @@ More information can be found in [Navigation2](https://navigation.ros.org/).
 
 ### Spatio-Temporal Voxel Layer (STVL)
 This package, in replacement for the standard voxel grid representation of the environment, is a Navigation2 plugin that efficiently mantains temporal 3D sparse volumetric voxel grid with decay, through sensor models.
-
-![STVL](/path_to_video/video.gif)
 
 #### Spatio-
 The Spatio in this package is the representation of the environment in a configurable voxel size and general appearance in RViz.

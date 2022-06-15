@@ -76,7 +76,7 @@ Then, to also change the visualized map in Gazebo, select the corresponding worl
 
 ![Office Hearthquake Gazebo Map](https://user-images.githubusercontent.com/82339529/173866774-51625d56-c2be-4642-983c-247862742e7b.jpg)
 
-![Playground Gazebo Map](/path_to_video/video.gif)
+![Playground Gazebo Map](https://user-images.githubusercontent.com/82339529/173867291-64808577-2824-4f80-835c-38d5c0f6e45b.png)
 
 
 Want to add something?

@@ -6,7 +6,7 @@ Group Composition:
 - Thomas Campagnolo (S5343274)
 - Federico Sacco (S4672010)
 
-![STVL Example](/path_to_video/video.gif)
+![STVL Example](https://user-images.githubusercontent.com/14944147/37010885-b18fe1f8-20bb-11e8-8c28-5b31e65f2844.gif)
  
 
 Installation
@@ -46,7 +46,7 @@ In the second one run the navigation package of Linorobot2.
 ros2 launch linorobot2_navigation navigation.launch.py
 ```
 
-https://user-images.githubusercontent.com/82339529/173862266-d42f8d2e-2573-4d33-8c31-13218e1c924b.mp4
+https://user-images.githubusercontent.com/82339529/173866182-def98f64-165f-4ccf-aa41-4dc1c9e8c71a.mp4
 
 
 Now, in RViz select *2D pose estimate* and configure it as similar as possible to the initial pose of Linorobot2, which is depicted in Gazebo. You should now be able to see the robot model, the laser scan and current voxel grid.<br>
@@ -74,7 +74,7 @@ Two different environments have already been mapped and are ready to be used: `o
 To change the selected map, modify in the `navigation.launch.py` file, available in the `linorobot2_navigation` package, the `MAP_NAME` global variable, by initializing it to `office_earthquake` or `playground`, in order to visualize in RViz the corresponding GridMap.<br>
 Then, to also change the visualized map in Gazebo, select the corresponding world file path (line 36), in the `gazebo.launch.py` file in package `linorobot2_gazebo`. Before running again the launch file rebuild the workspace with `colcon build`, as done before.<br>
 
-![Office Hearthquake Gazebo Map](/path_to_video/video.gif)
+![Office Hearthquake Gazebo Map](https://user-images.githubusercontent.com/82339529/173866774-51625d56-c2be-4642-983c-247862742e7b.jpg)
 
 ![Playground Gazebo Map](/path_to_video/video.gif)
 

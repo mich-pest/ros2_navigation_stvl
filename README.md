@@ -65,6 +65,10 @@ Available Plug&Play Setups
 Two different sensor configurations are available in this package to build the voxel grid: 3D LiDAR and a twin RGB-D cameras (one on the front and one on the back).<br>
 In order to change the current observation source from which STVL creates the voxel grid, modify in the `navigation.launch.py` file, available in the `linorobot2_navigation` package, the `SENSOR` global variable, by initializing it to `3d` or `rgbd`. Before running again the launch file rebuild the workspace with `colcon build`, as done before.<br>
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/82339529/173870511-e750a589-7e66-495f-afd1-5799667f23de.jpg" />
+</p>
+
 ![STVL Topic UML RGB-D Cameras](https://user-images.githubusercontent.com/82339529/173870511-e750a589-7e66-495f-afd1-5799667f23de.jpg)
 
 ### Maps

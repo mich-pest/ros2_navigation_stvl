@@ -6,7 +6,7 @@ Group Composition:
 - Thomas Campagnolo (S5343274)
 - Federico Sacco (S4672010)
 
-![STVL Example](https://user-images.githubusercontent.com/14944147/37010885-b18fe1f8-20bb-11e8-8c28-5b31e65f2844.gif)
+![STVL Example](https://user-images.githubusercontent.com/82339529/174105565-8df041fd-6025-4307-88d0-d761695f1766.png)
  
 
 Installation

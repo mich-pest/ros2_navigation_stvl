@@ -223,7 +223,7 @@ ros2 run nav2_map_server map_saver_cli -f <map_name> --ros-args -p save_map_time
 To change the working environment, refer to the Maps section of the Available Plug&Play Setups chapter. Pay attention to the both map and world files name.
 
 
-Theory Concept
+Theory Concepts
 ----------------------
 ### Navigation 2
 The Navigation 2 package allows to move a mobile robot safely from the initial position to the goal position and can also be applied in other applications that involve the navigation of the robot, such as following dynamic points.

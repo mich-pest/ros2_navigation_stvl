@@ -52,11 +52,11 @@ https://user-images.githubusercontent.com/82339529/173866182-def98f64-165f-4ccf-
 Now, in RViz select *2D pose estimate* and configure it as similar as possible to the initial pose of Linorobot2, which is depicted in Gazebo. You should now be able to see the robot model, the laser scan and current voxel grid.<br>
 Next, in RViz select *Nav2 Goal* and configure to a whatever position in the map, in order to see the robot moving, while also rendering the voxel grid. Both voxel color and decay time can be customized in simulation using the *Color Transformer* and *Decay Time* fields, in the left RViz tab. <br>
 
-A known issue is the voxel rendering on systems with some graphic optimization carried out by the Intel or INVIDIA graphic hardware. A popular solution is the following:
+A known issue is the voxel rendering on systems with some graphic optimization carried out by the Intel or NVIDIA graphic hardware. A popular solution is the following:
 ```bash
 export LIBGL_ALWAYS_SOFTWARE=1
 ```
-If this does not work, check your graphic card interface, probably a change in the settings is required.
+If this fix does not solve the problem, probably a change in the settings is required: check [here](http://wiki.ros.org/rviz/Tutorials/Rviz%20in%20Stereo) for further tips.
 
 
 Available Plug&Play Setups 

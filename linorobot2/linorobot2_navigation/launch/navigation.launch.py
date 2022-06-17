@@ -21,8 +21,8 @@ from launch.conditions import IfCondition
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node
 
-# Glboal variable to specify which map to be launched in rviz
-MAP_NAME='playground' 
+# Global variable to specify which map to be launched in rviz
+MAP_NAME='playground' #playground or office_earthquake
 # Global variable to specify in a easier way which sensor to use for stvl layer
 SENSOR = 'rgbd' #3d or rgbd
 

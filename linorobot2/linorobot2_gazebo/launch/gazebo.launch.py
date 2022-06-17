@@ -22,7 +22,7 @@ from launch_ros.substitutions import FindPackageShare
 
 
 # Select map 
-MAP = "playground" # offcce_earthquake or playground
+MAP = "playground" # office_earthquake or playground
 def generate_launch_description():
     use_sim_time = True
 
@@ -36,7 +36,6 @@ def generate_launch_description():
 
     # Specify .world file to be launched
     world_path = PathJoinSubstitution(
-        #[FindPackageShare("linorobot2_gazebo"), "worlds", "playground.world"]
         [FindPackageShare("linorobot2_gazebo"), "worlds", f"{MAP}.world"]
     )
 
@@ -44,23 +43,22 @@ def generate_launch_description():
         [FindPackageShare('linorobot2_description'), 'launch', 'description.launch.py']
     )
 
+
     # If chosen map is office_earthquake, then spawn linorobot in a safe spot
     if (MAP == "office_earthquake"):
         # Declare the spawn node
-        spawn_node = Node(
-            package='gazebo_ros',
-            executable='spawn_entity.py',
-            name='urdf_spawner',
-            output='screen',
-            arguments=["-topic", "robot_description", "-entity", "linorobot2", "-x", '2', '-y', '-1']
-        )
+        sim_arguments=["-topic", "robot_description", "-entity", "linorobot2", "-x", '2', '-y', '-1']
+        
     else :
-        spawn_node = Node(
+    	sim_arguments=["-topic", "robot_description", "-entity", "linorobot2"]
+        
+        
+    spawn_node = Node(
             package='gazebo_ros',
             executable='spawn_entity.py',
             name='urdf_spawner',
             output='screen',
-            arguments=["-topic", "robot_description", "-entity", "linorobot2"]
+            arguments=sim_arguments
         )
 
     return LaunchDescription([

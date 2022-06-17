@@ -72,7 +72,7 @@ In order to change the current observation source from which STVL creates the vo
 ### Maps
 Two different environments have already been mapped and are ready to be used: `office_earthquake` (indoor) and `playground` (outdoor).<br>
 To change the selected map, modify in the `navigation.launch.py` file, available in the `linorobot2_navigation` package, the `MAP_NAME` global variable, by initializing it to `office_earthquake` or `playground`, in order to visualize in RViz the corresponding GridMap.<br>
-Then, to also change the visualized map in Gazebo, select the corresponding world file path (line 36), in the `gazebo.launch.py` file in package `linorobot2_gazebo`. Before running again the launch file rebuild the workspace with `colcon build`, as done before.<br>
+Then, to also change the visualized map in Gazebo, select the corresponding world name by changing the value of the `MAP` global variable, in the `gazebo.launch.py` file in package `linorobot2_gazebo`. Before running again the launch file rebuild the workspace with `colcon build`, as done before.<br>
 
 ![Office Hearthquake Gazebo Map](https://user-images.githubusercontent.com/82339529/173866774-51625d56-c2be-4642-983c-247862742e7b.jpg)
 

@@ -21,6 +21,8 @@ from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
 
+# Select map 
+MAP = "playground" # offcce_earthquake or playground
 def generate_launch_description():
     use_sim_time = True
 
@@ -34,27 +36,41 @@ def generate_launch_description():
 
     # Specify .world file to be launched
     world_path = PathJoinSubstitution(
-        [FindPackageShare("linorobot2_gazebo"), "worlds", "playground.world"]
-        #[FindPackageShare("linorobot2_gazebo"), "worlds", "office_earthquake.world"]
+        #[FindPackageShare("linorobot2_gazebo"), "worlds", "playground.world"]
+        [FindPackageShare("linorobot2_gazebo"), "worlds", f"{MAP}.world"]
     )
 
     description_launch_path = PathJoinSubstitution(
         [FindPackageShare('linorobot2_description'), 'launch', 'description.launch.py']
     )
 
-    return LaunchDescription([
-        ExecuteProcess(
-            cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so',  '-s', 'libgazebo_ros_init.so', world_path],
-            output='screen'
-        ),
-
-        Node(
+    # If chosen map is office_earthquake, then spawn linorobot in a safe spot
+    if (MAP == "office_earthquake"):
+        # Declare the spawn node
+        spawn_node = Node(
+            package='gazebo_ros',
+            executable='spawn_entity.py',
+            name='urdf_spawner',
+            output='screen',
+            arguments=["-topic", "robot_description", "-entity", "linorobot2", "-x", '2', '-y', '-1']
+        )
+    else :
+        spawn_node = Node(
             package='gazebo_ros',
             executable='spawn_entity.py',
             name='urdf_spawner',
             output='screen',
             arguments=["-topic", "robot_description", "-entity", "linorobot2"]
+        )
+
+    return LaunchDescription([
+        ExecuteProcess(
+            cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so',  '-s', 'libgazebo_ros_init.so', world_path],
+            output='screen'
         ),
+        
+        # Return the spawn node
+        spawn_node,
 
         Node(
             package='linorobot2_gazebo',

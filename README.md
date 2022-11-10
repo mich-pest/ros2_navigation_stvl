@@ -48,8 +48,7 @@ In the second one run the navigation package of Linorobot2.
 ros2 launch linorobot2_navigation navigation.launch.py
 ```
 
-https://user-images.githubusercontent.com/74416077/201114512-51c90d2d-5fec-4bc6-b505-8365d5cf6cd3.mp4
-https://user-images.githubusercontent.com/74416077/201114781-3c87b87c-5e5b-4876-bf40-858259ae5096.mp4
+VIDEO HERE
 
 Now, in RViz select *2D pose estimate* and configure it as similar as possible to the initial pose of Linorobot2, which is depicted in Gazebo. You should now be able to see the robot model, the laser scan and the current voxel grid.<br>
 Next, in RViz select *Nav2 Goal* and configure to whatever position in the map, in order to see the robot moving, while also rendering the voxel grid. Both voxel color and decay time can be customized in simulation using the *Color Transformer* and *Decay Time* fields, in the left RViz tab. <br>

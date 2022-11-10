@@ -1,8 +1,9 @@
 Navigation and 3D Mapping with ROS2
 =======================
+*University of Genoa A.Y. 2022/23, MSc Robotics Engineering*<br><br>
 This package aims at analysing the functionalities provided by [ROS2 Navigation2](https://navigation.ros.org/) combined with the [Spatio-Temporal Voxel Layer (STVL)](https://github.com/SteveMacenski/spatio_temporal_voxel_layer) plugin for sensor fusion and mapping.<br>
 The whole package is based on [Linorobot2 Package](https://github.com/linorobot/linorobot2).
-This package has been developed by the following contributors:
+This software component has been developed by the following contributors:
 - Michele Pestarino (michele.pestarino@outlook.it)
 - Thomas Campagnolo (thomas.campagnolo24@gmail.com)
 - Federico Sacco (fedezac99@gmail.com)

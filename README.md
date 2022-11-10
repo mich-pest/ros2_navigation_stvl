@@ -48,7 +48,7 @@ In the second one run the navigation package of Linorobot2.
 ros2 launch linorobot2_navigation navigation.launch.py
 ```
 
-https://user-images.githubusercontent.com/82339529/173866182-def98f64-165f-4ccf-aa41-4dc1c9e8c71a.mp4
+https://user-images.githubusercontent.com/74416077/201114512-51c90d2d-5fec-4bc6-b505-8365d5cf6cd3.mp4
 
 
 Now, in RViz select *2D pose estimate* and configure it as similar as possible to the initial pose of Linorobot2, which is depicted in Gazebo. You should now be able to see the robot model, the laser scan and the current voxel grid.<br>

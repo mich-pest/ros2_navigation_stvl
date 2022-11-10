@@ -1,10 +1,11 @@
 Navigation and 3D Mapping with ROS2
 =======================
 This package aims at analysing the functionalities provided by [ROS2 Navigation2](https://navigation.ros.org/) combined with the [Spatio-Temporal Voxel Layer (STVL)](https://github.com/SteveMacenski/spatio_temporal_voxel_layer) plugin for sensor fusion and mapping.<br>
-Group Composition:
-- Michele Pestarino (S4672032)
-- Thomas Campagnolo (S5343274)
-- Federico Sacco (S4672010)
+The whole package is based on [Linorobot2 Package](https://github.com/linorobot/linorobot2).
+This package has been developed by the following contributors:
+- Michele Pestarino (michele.pestarino@outlook.it)
+- Thomas Campagnolo (thomas.campagnolo24@gmail.com)
+- Federico Sacco (fedezac99@gmail.com)
 
 ![STVL Example](https://user-images.githubusercontent.com/82339529/174105565-8df041fd-6025-4307-88d0-d761695f1766.png)
  
@@ -49,8 +50,8 @@ ros2 launch linorobot2_navigation navigation.launch.py
 https://user-images.githubusercontent.com/82339529/173866182-def98f64-165f-4ccf-aa41-4dc1c9e8c71a.mp4
 
 
-Now, in RViz select *2D pose estimate* and configure it as similar as possible to the initial pose of Linorobot2, which is depicted in Gazebo. You should now be able to see the robot model, the laser scan and current voxel grid.<br>
-Next, in RViz select *Nav2 Goal* and configure to a whatever position in the map, in order to see the robot moving, while also rendering the voxel grid. Both voxel color and decay time can be customized in simulation using the *Color Transformer* and *Decay Time* fields, in the left RViz tab. <br>
+Now, in RViz select *2D pose estimate* and configure it as similar as possible to the initial pose of Linorobot2, which is depicted in Gazebo. You should now be able to see the robot model, the laser scan and the current voxel grid.<br>
+Next, in RViz select *Nav2 Goal* and configure to whatever position in the map, in order to see the robot moving, while also rendering the voxel grid. Both voxel color and decay time can be customized in simulation using the *Color Transformer* and *Decay Time* fields, in the left RViz tab. <br>
 
 A known issue is the voxel rendering on systems with some graphic optimization carried out by the Intel or NVIDIA graphic hardware. A popular solution is the following:
 ```bash
@@ -58,11 +59,10 @@ export LIBGL_ALWAYS_SOFTWARE=1
 ```
 If this fix does not solve the problem, probably a change in the settings is required: check [here](http://wiki.ros.org/rviz/Tutorials/Rviz%20in%20Stereo) for further tips.
 
-
 Available Plug&Play Setups 
 --------------------------
 ### STVL Observation Sources
-Two different sensor configurations are available in this package to build the voxel grid: 3D LiDAR and a twin RGB-D cameras (one on the front and one on the back).<br>
+Two different sensor configurations are available in this package to build the voxel grid: 3D LiDAR and twin RGB-D cameras (one on the front and one on the back).<br>
 In order to change the current observation source from which STVL creates the voxel grid, modify in the `navigation.launch.py` file, available in the `linorobot2_navigation` package, the `SENSOR` global variable, by initializing it to `3d` or `rgbd`. Before running again the launch file rebuild the workspace with `colcon build`, as done before.<br>
 
 <p align="center">
@@ -110,7 +110,6 @@ Following the Linorobot2 package convention, firstly modify the `generic_laser.u
 ```
 
 Then, in `2wd.urdf.xacro`, still in `linorobot2_description` package, `urdf/robots` folder, add the above define object, by referencing it via its name. Make sure that `generic_laser.urdf.xacro` is already present in the various imports.
-
 ```xml
 <xacro:include filename="$(find linorobot2_description)/urdf/sensors/generic_laser.urdf.xacro" />
 .
@@ -149,7 +148,6 @@ Similarly, import the sensor's xacro file in `2wd.urdf.xacro`, still in `linorob
   <xacro:insert_block name="depth_sensor_pose1"/>
 </xacro:depth_sensor>
 ```
-
 Finally, define the actual depth camera pose in the robot model's properties, by changing the `2wd_properties.urdf.xacro`, in `linorobot2_description` package, `urdf` folder.
 
 ```xml
@@ -160,7 +158,7 @@ Finally, define the actual depth camera pose in the robot model's properties, by
 
 ### STVL Settings
 In order to build the voxel grid with the correct sensor data modify the `navigation.yaml` parameter file, which can be found in the `config` folder of the `linorobot2_navigation` package. <br>
-STVL can be added to both `global_costmap` and/or `local_costmap`. However, attention has to be paid to the `plugins` array order: the STVL has to come before the inflation layer, so that the last one can inflate obstacles present in the voxel grid. 
+STVL can be added to both `global_costmap` and/or `local_costmap`. However, attention has to be paid to the `plugins` array order: the STVL has to come before the inflation layer so that the last one can inflate obstacles present in the voxel grid. 
 
 ```yaml
 plugins: ["static_layer", "obstacle_layer", "stvl_layer", "inflation_layer"]
@@ -190,11 +188,11 @@ rgbd1_clear: # Name of the observation source
   clearing: false # True if its a clearing observation source
   vertical_fov_angle: 0.8745  # Vertical field of view angle of the sensor, in radians
   horizontal_fov_angle: 1.50098 # Horizontal field of view angle of the sensor, in radians
-  decay_acceleration: 5.0 # In 1/s^2. If laser scanner MUST be 0
+  decay_acceleration: 5.0 # In 1/s^2. If the laser scanner MUST be 0
   model_type: 0 # 0=depth camera, 1=3d lidar
 ```
 
-STVL allows for the fusion of different observation sources when creating the voxel grid: each one of them has to be specified in `observation_sources` and the pugin will manage by itself the underlying sensor fusion.
+STVL allows for the fusion of different observation sources when creating the voxel grid: each one of them has to be specified in `observation_sources` and the plugin will manage by itself the underlying sensor fusion.
 
 ### Work on a new map
 Initially, the `new_map.world` file has to be stored in the `worlds` folder in `linorobot2_gazebo` package, then modify the `gazebo.launch.py` file in that package at line 36.
@@ -220,7 +218,7 @@ cd linorobot2/linorobot2_navigation/maps
 ros2 run nav2_map_server map_saver_cli -f <map_name> --ros-args -p save_map_timeout:=10000.0
 ```
 
-To change the working environment, refer to the Maps section of the Available Plug&Play Setups chapter. Pay attention to the both map and world files name.
+To change the working environment, refer to the Maps section of the Available Plug&Play Setups chapter. Pay attention to the both map and worlds files' name.
 
 
 Theory Concepts
@@ -245,11 +243,11 @@ The possible independent servers and plugins available are:
 More information can be found in [Navigation2](https://navigation.ros.org/).
 
 ### Spatio-Temporal Voxel Layer (STVL)
-This package, in replacement for the standard voxel grid representation of the environment, is a Navigation2 plugin that efficiently mantains temporal 3D sparse volumetric voxel grid with decay, through sensor models.
+This package, in replacement for the standard voxel grid representation of the environment, is a Navigation2 plugin that efficiently maintains temporal 3D sparse volumetric voxel grid with decay, through sensor models.
 
 #### Spatio-
 The Spatio in this package is the representation of the environment in a configurable voxel size and general appearance in RViz.
-In addition, it is possible to configure the minimum and maximum height values to perceive obstacles and the range within which the objects are voxalized.
+In addition, it is possible to configure the minimum and maximum height values to perceive obstacles and the range within which the objects are voxelized.
 One of the key features of the spatio is that there are no constraints for a maximum number of voxels.
 
 #### -Temporal
@@ -259,11 +257,10 @@ The Temporal in this package allows you to introduce the concept of voxel decay 
 The Local Costmap uses all information from the robot before the voxel decay time for the local cost map. It is based on the user configuration of the layer to have a short decay time of the voxels (5-15 seconds) in order to plan only in relative space. It is the user's responsibility to choose a decay time that makes sense to the robot's local planner.
 
 #### Global Costmap
-With this package it is certainly possible not to decay voxels in the global map. In the practical application a time of 15-45 seconds is a good balance due to the things moving in the scene (e.g. shop, warehouse, building area, office, etc.) and also permanent voxels set decay to -1, not recommended to use for planar lidars.
+With this package, it is certainly possible not to decay voxels in the global map. In the practical application a time of 15-45 seconds is a good balance due to the things moving in the scene (e.g. shop, warehouse, building area, office, etc.) and also permanent voxels set decay to -1, not recommended to use for planar lidars.
 
 #### Mapping
-The Mapping package can be used to map an environment in 3D in real time by enabling the mapping mode, keeping the entire voxel grid and saving the map using the services provided.
-You can run multiple instances, one for mapping and one for navigation, if you want to navigate while mapping your environment. The mapping will also save incremental maps in the startup directory, displayed using `vdb_viewer`. The cost map and occupation point clouds will not be generated in this mode.
+The Mapping package can be used to map an environment in 3D in real-time by enabling the mapping mode, keeping the entire voxel grid and saving the map using the services provided.
+You can run multiple instances - one for mapping and one for navigation - if you want to navigate while mapping your environment. The mapping will also save incremental maps in the startup directory, displayed using `vdb_viewer`. The cost map and occupation point clouds will not be generated in this mode.
 
-More information can be found in [Spatio-Temporal Voxel Layer (STVL)](https://github.com/SteveMacenski/spatio_temporal_voxel_layer) github repository.
-
+More information can be found in [Spatio-Temporal Voxel Layer (STVL)](https://github.com/SteveMacenski/spatio_temporal_voxel_layer) GitHub repository.
